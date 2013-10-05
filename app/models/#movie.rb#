@@ -1,0 +1,2 @@
+1class Movie < ActiveRecord::Base
+end
