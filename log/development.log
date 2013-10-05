@@ -139,3 +139,31 @@ Processing by MoviesController#index as HTML
   [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies" [0m
   Rendered movies/index.html.haml within layouts/application (3.9ms)
 Completed 200 OK in 15ms (Views: 8.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/rails.png" for 127.0.0.1 at 2013-10-05 01:20:49 -0700
+Connecting to database specified by database.yml
+Served asset /rails.png - 304 Not Modified (3ms)
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-10-05 01:20:52 -0700
+Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies" [0m
+  Rendered movies/index.html.haml within layouts/application (15.7ms)
+Completed 200 OK in 148ms (Views: 136.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-10-05 01:20:52 -0700
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-10-05 01:20:52 -0700
+Served asset /jquery.js - 304 Not Modified (18ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-10-05 01:20:52 -0700
+Served asset /application.js - 304 Not Modified (21ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-10-05 01:20:52 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (9ms)
