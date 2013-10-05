@@ -7,9 +7,9 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.scoped
-    @movies = @movies.order('title') if params['sort'] == 'title'
-    @movies = @movies.order('release_date') if params['sort'] == 'date'
+    @movies = Movie.all
+    @movies = Movie.find(:all, :order => 'title') if params['sort'] == 'title'
+    @movies = Movie.find(:all, :order => 'release_date') if params['sort'] == 'date'
     @sort = params[:sort] if params[:sort] == 'title' || params[:sort] == 'date'
   end
 
