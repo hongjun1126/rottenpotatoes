@@ -12,12 +12,17 @@ class MoviesController < ApplicationController
     @movies = Movie.find(:all, :order => 'release_date') if params['sort'] == 'date'
     @sort = params[:sort] if params[:sort] == 'title' || params[:sort] == 'date'
     @all_ratings = Movie.filter_rating
+    @check = Movie.check_bool
     filtered_movie = []
     if(params[:ratings] != nil)
+      Movie.check_bool.each{|key, value| Movie.check_bool[key] = false}
+
       @movies.each do |movie|
+        params[:ratings].keys.each{|key| Movie.check_bool[key] = true}
         filtered_movie.push(movie) if params[:ratings].keys.include?(movie.rating)
       end
       @movies = filtered_movie
+      @check = Movie.check_bool
     end
   end
 
