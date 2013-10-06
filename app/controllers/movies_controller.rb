@@ -10,20 +10,45 @@ class MoviesController < ApplicationController
     @movies = Movie.all
     @movies = Movie.find(:all, :order => 'title') if params['sort'] == 'title'
     @movies = Movie.find(:all, :order => 'release_date') if params['sort'] == 'date'
-    @sort = params[:sort] if params[:sort] == 'title' || params[:sort] == 'date'
+    #@sort = params[:sort] if params[:sort] == 'title' || params[:sort] == 'date'
+    @sw = false
+    @sw1 = false
+
     @all_ratings = Movie.filter_rating
     @check = Movie.check_bool
     filtered_movie = []
+
+    if params[:sort]
+      @sort = params[:sort] if params[:sort] == 'title' || params[:sort] == 'date'
+    elsif session[:sort]
+      @sort = session[:sort]
+      @sw = true
+    end
+
+    if params[:ratings]
+      @ratings = params[:ratings]
+    elsif session[:ratings]
+      @ratings = session[:ratings]
+      @sw1 = true
+    end
+
+    if @sw
+      redirect_to movies_path(:sort => @sort, :ratings => @ratings)
+    end
+
     if(params[:ratings] != nil)
       Movie.check_bool.each{|key, value| Movie.check_bool[key] = false}
 
       @movies.each do |movie|
-        params[:ratings].keys.each{|key| Movie.check_bool[key] = true}
+        @ratings.keys.each{|key| Movie.check_bool[key] = true}
         filtered_movie.push(movie) if params[:ratings].keys.include?(movie.rating)
       end
       @movies = filtered_movie
       @check = Movie.check_bool
     end
+
+    session[:sort] = @sort
+    session[:ratings] = @ratings
   end
 
   def new
