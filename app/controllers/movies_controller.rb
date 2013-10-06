@@ -41,7 +41,7 @@ class MoviesController < ApplicationController
 
       @movies.each do |movie|
         @ratings.keys.each{|key| Movie.check_bool[key] = true}
-        filtered_movie.push(movie) if params[:ratings].keys.include?(movie.rating)
+        filtered_movie.push(movie) if @ratings.keys.include?(movie.rating)
       end
       @movies = filtered_movie
       @check = Movie.check_bool
