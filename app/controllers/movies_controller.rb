@@ -11,6 +11,14 @@ class MoviesController < ApplicationController
     @movies = Movie.find(:all, :order => 'title') if params['sort'] == 'title'
     @movies = Movie.find(:all, :order => 'release_date') if params['sort'] == 'date'
     @sort = params[:sort] if params[:sort] == 'title' || params[:sort] == 'date'
+    @all_ratings = Movie.filter_rating
+    filtered_movie = []
+    if(params[:ratings] != nil)
+      @movies.each do |movie|
+        filtered_movie.push(movie) if params[:ratings].keys.include?(movie.rating)
+      end
+      @movies = filtered_movie
+    end
   end
 
   def new
